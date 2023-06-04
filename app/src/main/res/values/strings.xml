@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">AppCriptomoeda</string>
     <string name="app_criptomoeda">App Criptomoeda</string>
+    <string name="bot_o_criar">Botão Criar</string>
+    <string name="c_digo">Código</string>
+    <string name="nome">Nome</string>
+    <string name="descri_o">Descrição</string>
+    <string name="salvar">Salvar</string>
 </resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.FormularioCriptomoedaActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:ems="10"
+                android:hint="@string/c_digo"
+                android:inputType="text|textCapCharacters"
+                tools:ignore="VisualLintTextFieldSize"
+                android:autofillHints="" />
+
+            <EditText
+                android:id="@+id/editTextNome"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:ems="10"
+                android:hint="@string/nome"
+                android:inputType="text"
+                tools:ignore="VisualLintTextFieldSize"
+                android:autofillHints="" />
+
+            <EditText
+                android:id="@+id/editTextDescricao"
+                android:layout_width="match_parent"
+                android:layout_height="166dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/descri_o"
+                android:inputType="textMultiLine"
+                tools:ignore="VisualLintTextFieldSize"
+                android:autofillHints="" />
+
+            <Button
+                android:id="@+id/buttonSalvar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/salvar"
+                tools:ignore="VisualLintButtonSize" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
