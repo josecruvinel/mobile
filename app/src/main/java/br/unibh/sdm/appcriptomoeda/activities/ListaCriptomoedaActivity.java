@@ -1,7 +1,5 @@
 package br.unibh.sdm.appcriptomoeda.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -51,11 +51,11 @@ public class ListaCriptomoedaActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("ListaCriptoActivity","Clicou em clique longo na posicao "+position);
+                Log.i("ListaCriptoActivity", "Clicou em clique longo na posicao " + position);
                 final Criptomoeda objetoSelecionado = (Criptomoeda) parent.getAdapter().getItem(position);
-                Log.i("ListaCriptoActivity", "Selecionou a criptomoeda "+objetoSelecionado.getCodigo());
+                Log.i("ListaCriptoActivity", "Selecionou a criptomoeda " + objetoSelecionado.getCodigo());
                 new AlertDialog.Builder(parent.getContext()).setTitle("Removendo Criptomoeda")
-                        .setMessage("Tem certeza que quer remover a criptomoeda "+objetoSelecionado.getCodigo()+"?")
+                        .setMessage("Tem certeza que quer remover a criptomoeda " + objetoSelecionado.getCodigo() + "?")
                         .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -68,7 +68,7 @@ public class ListaCriptomoedaActivity extends AppCompatActivity {
     }
 
     private void removeCriptomoeda(Criptomoeda criptomoeda) {
-        Log.i("ListaCriptoActivity","Vai remover criptomoeda "+criptomoeda.getCodigo());
+        Log.i("ListaCriptoActivity", "Vai remover criptomoeda " + criptomoeda.getCodigo());
         Call<Boolean> call = this.service.excluiCriptomoeda(criptomoeda.getCodigo());
         call.enqueue(new Callback<Boolean>() {
             @Override
@@ -78,10 +78,11 @@ public class ListaCriptomoedaActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Removeu a Criptomoeda " + criptomoeda.getCodigo(), Toast.LENGTH_LONG).show();
                     onResume();
                 } else {
-                    Log.e("ListaCriptoActivity", "Erro (" + response.code()+"): Verifique novamente os valores");
-                    Toast.makeText(getApplicationContext(), "Erro (" + response.code()+"): Verifique novamente os valores", Toast.LENGTH_LONG).show();
+                    Log.e("ListaCriptoActivity", "Erro (" + response.code() + "): Verifique novamente os valores");
+                    Toast.makeText(getApplicationContext(), "Erro (" + response.code() + "): Verifique novamente os valores", Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
                 Log.e("ListaCriptoActivity", "Erro: " + t.getMessage());
@@ -94,14 +95,14 @@ public class ListaCriptomoedaActivity extends AppCompatActivity {
         botaoNovo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("MainActivity","Clicou no botão para adicionar Nova Criptomoeda");
+                Log.i("MainActivity", "Clicou no botão para adicionar Nova Criptomoeda");
                 startActivity(new Intent(ListaCriptomoedaActivity.this,
                         FormularioCriptomoedaActivity.class));
             }
         });
     }
 
-    public void buscaCriptomoedas(){
+    public void buscaCriptomoedas() {
         CriptomoedaService service = RestServiceGenerator.createService(CriptomoedaService.class);
         Call<List<Criptomoeda>> call = service.getCriptomoedas();
         call.enqueue(new Callback<List<Criptomoeda>>() {
@@ -110,13 +111,13 @@ public class ListaCriptomoedaActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Log.i("ListaCriptoActivity", "Retornou " + response.body().size() + " Criptomoedas!");
                     ListView listView = findViewById(R.id.listViewListaCriptomoedas);
-                    listView.setAdapter(new ListaCriptomoedaAdapter(context,response.body()));
+                    listView.setAdapter(new ListaCriptomoedaAdapter(context, response.body()));
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Log.i("ListaCriptoActivity", "Selecionou o objeto de posicao "+position);
+                            Log.i("ListaCriptoActivity", "Selecionou o objeto de posicao " + position);
                             Criptomoeda objetoSelecionado = (Criptomoeda) parent.getAdapter().getItem(position);
-                            Log.i("ListaCriptoActivity", "Selecionou a criptomoeda "+objetoSelecionado.getCodigo());
+                            Log.i("ListaCriptoActivity", "Selecionou a criptomoeda " + objetoSelecionado.getCodigo());
                             Intent intent = new Intent(ListaCriptomoedaActivity.this, FormularioCriptomoedaActivity.class);
                             intent.putExtra("objeto", objetoSelecionado);
                             startActivity(intent);

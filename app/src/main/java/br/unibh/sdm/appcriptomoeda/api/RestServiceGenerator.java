@@ -23,7 +23,7 @@ public class RestServiceGenerator {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        Log.i("RestServiceGenerator","Criada a conexao com a api rest");
+        Log.i("RestServiceGenerator", "Criada a conexao com a api rest");
         return retrofit.create(serviceClass);
     }
 
